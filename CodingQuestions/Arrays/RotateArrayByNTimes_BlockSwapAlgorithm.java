@@ -6,27 +6,25 @@ import java.util.Scanner;
 //Output: result[] = {5, 1, 2, 3, 4, 6, 8, 7, 9, 0}
 public class RotateArrayByNTimes_BlockSwapAlgorithm {
     public static void main(String[] args) {
-        Scanner in=new Scanner(System.in);
-        int arr[]={6, 8, 7, 9, 0, 5, 1, 3, 2, 4};
+        int arr[] = {6, 8, 7, 9, 0, 5, 1, 3, 2, 4};
+        int n=12;
+        rotate(arr,n);
         System.out.println(Arrays.toString(arr));
-        System.out.print("Enter the No.Of time rotate of an Array :");
-        int rotate=in.nextInt();
-        int[]ans=rotateArray(arr,rotate);
-        System.out.println(Arrays.toString(ans));
-
-
     }
-    static int[] rotateArray(int[]arr,int n){
-        int[]result=new int[arr.length];
-        int i=0;
-        while(i<arr.length){
-            if(i-n<0){
-                result[arr.length-(n-i)]=arr[i];
-            }else{
-                result[i-n]=arr[i];
-            }
-            i++;
-        }
-        return result;
+    static void rotate(int []arr,int n){
+        n=n% arr.length;
+        System.out.println(n);
+        reverse(arr,0,n-1);
+        reverse(arr,n,arr.length-1);
+        reverse(arr,0, arr.length-1);
+    }
+    static void reverse(int[]arr,int start,int end){
+       while(start<end){
+           int temp=arr[start];
+           arr[start]=arr[end];
+           arr[end]=temp;
+           start++;
+           end--;
+       }
     }
 }
